@@ -44,7 +44,9 @@
 
     <?php echo("<h1>Welcome! ".$_SESSION['user']."</h1>") ?>
     <!--table with the contents that you stored-->
+    <!--db call to get all the info-->
     <?php
+    
         try
         {
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -64,6 +66,7 @@
         }
     ?>
     <div class="container-fluid">
+        <!--display the table-->
         <h1>Your records</h1>
         <table class="table">
             <thead>
@@ -76,8 +79,9 @@
                 </tr>
             </thead>
             <tbody>
+                echo("number of passwords stored: #".sizeof($results));
                 <?php for ($i=0; $i < sizeof($results) ; $i++) { 
-                    echo(sizeof($results));
+                    
                     echo("<tr>
                     <td>".$results[$i]['app_name']."</td>
                     ");
@@ -98,6 +102,7 @@
             </tbody>
         </table>
     </div>
+    <!--Insert new info to the db-->
     <div>
         <form action="encryptions_welcome.php" method="POST">
             <h1>Add a new record...</h1> 
@@ -107,6 +112,7 @@
             <input type="text" name="appinfo" placeholder="Info">
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
         </form>
+        <!--insert query-->
         <?php
         try
         {
